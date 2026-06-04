@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # Apache Kafka Projects
 
 ## Author
@@ -9,30 +8,48 @@
 
 # Project Overview
 
-This repository contains two Apache Kafka projects developed using Python and Docker to demonstrate real-time event streaming, consumer groups, partition rebalancing, event-driven processing, and real-time analytics.
+This repository contains two Apache Kafka projects developed using Python and Docker.
 
-## Technologies Used
+The projects demonstrate:
+
+- Kafka Producers
+- Kafka Consumers
+- Kafka Topics
+- Kafka Partitions
+- Consumer Groups
+- Partition Rebalancing
+- Poison Message Handling
+- Event-Driven Architecture
+- Real-Time Analytics
+
+---
+
+# Technologies Used
 
 - Apache Kafka
 - Python
 - kafka-python
 - Docker
+- Git
 - GitHub
 
 ---
 
 # Project 1: E-Commerce Event Processing
 
-A Kafka-based order processing system demonstrating core Kafka concepts.
+A Kafka-based order processing system demonstrating Kafka fundamentals.
 
 ## Features
 
-- Producer & Consumer
+- Producer and Consumer
+- CSV Data Publishing
 - Consumer Groups
+- Offset Management
 - Partition Rebalancing
 - Poison Message Handling
-- Offset Management
-- CSV-Based Event Publishing
+- Dead Letter Topic Design
+
+---
 
 ## Kafka Topic
 
@@ -40,127 +57,146 @@ A Kafka-based order processing system demonstrating core Kafka concepts.
 ecommerce.orders
 ```
 
+---
+
 ## Workflow
 
 ```text
 orders.csv
-    ↓
+      |
+      v
 Producer
-    ↓
+      |
+      v
 ecommerce.orders
-    ↓
-Consumers
+      |
+      v
+Consumer Group (order-analytics)
+      |
+      v
+Order Analytics
 ```
 
 ---
 
-## Task 1.2 - Kafka Cluster Setup
+# Task 1.2 - Kafka Setup
 
-### Kafka Broker Started
+## Kafka Broker Started
 
-![Kafka Broker](D:\kafka  -assignment\.venv\Lib\site-packages\kafka-ecommerce-project\1.3 -A.png)
+![Kafka Broker](kafka-ecommerce-project/1.png)
 
-### Docker Verification
+## Docker Verification
 
-![Docker Verification](kafka-ecommerce-project/screenshots/2.png)
+![Docker Verification](kafka-ecommerce-project/2.png)
 
-### Topic Creation
+## Topic Creation
 
-![Topic Creation](kafka-ecommerce-project/screenshots/3.png)
+![Topic Creation](kafka-ecommerce-project/3.png)
 
-### Message Production
+## Message Production
 
-![Producer](kafka-ecommerce-project/screenshots/4.png)
+![Message Production](kafka-ecommerce-project/4.png)
 
-### Message Consumption
+## Message Consumption
 
-![Consumer](kafka-ecommerce-project/screenshots/5.png)
-
----
-
-## Task 1.3 - Topic Creation and Partition Consumption
-
-### Topic Creation
-
-![Topic Creation](kafka-ecommerce-project/screenshots/1.3-A.png)
-
-### Producing Messages With Keys
-
-![Producing Messages](kafka-ecommerce-project/screenshots/1.3-B.png)
-
-### Consuming Messages From Partition 0
-
-![Partition Consumption](kafka-ecommerce-project/screenshots/1.3-C.png)
+![Message Consumption](kafka-ecommerce-project/5.png)
 
 ---
 
-## Task 2.1 - CSV Producer
+# Task 1.3 - Topic Creation and Partition Consumption
 
-### Producer Execution
+## Topic Description
 
-![Producer Execution](kafka-ecommerce-project/screenshots/2.1.png)
+![Topic Description](kafka-ecommerce-project/1.3-A.png)
 
-### Published Records
+## Producing Messages with Keys
 
-![Published Records](kafka-ecommerce-project/screenshots/2.1-1.png)
+![Producing Messages](kafka-ecommerce-project/1.3-B.png)
 
----
+## Consuming Messages from Partition 0
 
-## Task 2.2 - Consumer Analytics
-
-### Consumer Output
-
-![Consumer Output](kafka-ecommerce-project/screenshots/2.2-A.png)
-
-### Running Order Count
-
-![Running Count](kafka-ecommerce-project/screenshots/2.2-B.png)
+![Partition Consumption](kafka-ecommerce-project/1.3-C.png)
 
 ---
 
-## Task 2.3 - Consumer Group Rebalancing
+# Task 2.1 - CSV Producer
 
-### Consumer Instance 1
+Producer reads e-commerce order records from CSV and publishes them to Kafka.
 
-![Consumer Rebalance 1](kafka-ecommerce-project/screenshots/2.3-A.png)
+## Producer Execution
 
-### Consumer Instance 2
+![Producer Execution](kafka-ecommerce-project/2.1.png)
 
-![Consumer Rebalance 2](kafka-ecommerce-project/screenshots/2.3-B.png)
+## Published Records
+
+![Published Records](kafka-ecommerce-project/2.1-1.png)
 
 ---
 
-## Task 2.4 - Poison Message Handling
+# Task 2.2 - Consumer Analytics
 
-### Poison Message Sent
+Consumer reads messages and maintains a running order count per user.
 
-![Poison Message](kafka-ecommerce-project/screenshots/2.4-A.png)
+## Consumer Output
 
-### Consumer Error Handling
+![Consumer Output](kafka-ecommerce-project/2.2-A.png)
 
-![Poison Message Detection](kafka-ecommerce-project/screenshots/2.4-B.png)
+## Running Count Per User
 
-### Dead Letter Topic (DLT)
+![Running Count](kafka-ecommerce-project/2.2-B.png)
+
+---
+
+# Task 2.3 - Consumer Group Rebalancing
+
+Two consumer instances were started in the same group to demonstrate partition assignment and rebalancing.
+
+## Consumer Instance 1
+
+![Consumer Rebalance 1](kafka-ecommerce-project/2.3-A.png)
+
+## Consumer Instance 2
+
+![Consumer Rebalance 2](kafka-ecommerce-project/2.3-B.png)
+
+---
+
+# Task 2.4 - Poison Message Handling
+
+An invalid JSON message was intentionally sent to Kafka.
+
+## Poison Message Published
+
+![Poison Message Published](kafka-ecommerce-project/2.4-A.png)
+
+## Consumer Error Handling
+
+![Poison Message Handling](kafka-ecommerce-project/2.4-B.png)
+
+---
+
+## Dead Letter Topic (DLT) Design
 
 ```text
 ecommerce.orders.dlt
 ```
 
-The DLT is proposed to store invalid messages that cannot be processed successfully.
+Invalid messages can be redirected to the Dead Letter Topic instead of crashing consumers.
+
+Benefits:
+
+- Fault tolerance
+- Easier debugging
+- Message recovery
+- Improved reliability
 
 ---
 
 # Project 2: Ride Sharing Event Pipeline
 
-A Kafka-based ride-sharing analytics system that processes ride events and generates driver statistics.
+A Kafka-based ride sharing analytics system that processes ride events and generates driver statistics.
 
-## Features
-
-- Ride Event Producer
-- Completed Ride Filtering
-- Driver Earnings Calculation
-- Top Drivers Reporting
-- Event-Driven Architecture
+---
 
 ## Kafka Topics
 
@@ -172,60 +208,94 @@ driver.earnings
 
 ---
 
-## Architecture Diagram
+# Architecture Diagram
 
-![Architecture Diagram](kafka-ride-sharing-project/screenshots/architecture.png)
+![Architecture Diagram](ride_sharing_pipeline_page-0001.jpg)
 
 ---
 
 ## Workflow
 
 ```text
-ride_events.csv
-        ↓
 Ride Producer
-        ↓
+      |
+      v
 ride.events
-        ↓
+      |
+      v
 Completed Ride Processor
-        ↓
+      |
+      v
 ride.completed
-        ↓
+      |
+      v
 Driver Earnings Consumer
-        ↓
+      |
+      v
 driver.earnings
-        ↓
-Top 5 Drivers CLI
+      |
+      v
+Top 5 Drivers Report
 ```
 
 ---
 
-## Ride Producer
+# Ride Event Producer
 
-Publishes ride events into Kafka.
+The producer simulates ride events.
 
-### Screenshot
+Event Structure:
 
-![Ride Producer](kafka-ride-sharing-project/screenshots/3A.png)
+```json
+{
+  "ride_id": "R1001",
+  "driver_id": "D101",
+  "rider_id": "U501",
+  "status": "COMPLETED",
+  "lat": "10.015",
+  "lon": "76.321",
+  "timestamp": "2025-06-01 10:00:00"
+}
+```
+
+## Ride Producer Output
+
+![Ride Producer](kafka-ride-sharing-project/3A.png)
 
 ---
 
-## Completed Ride Processor
+# Completed Ride Processor
 
-Filters only completed rides and forwards them to the `ride.completed` topic.
+Reads from:
 
-### Screenshot
+```text
+ride.events
+```
 
-![Completed Ride Processor](kafka-ride-sharing-project/screenshots/3B.png)
+Filters:
+
+```text
+COMPLETED
+```
+
+Writes to:
+
+```text
+ride.completed
+```
+
+## Processor Output
+
+![Completed Ride Processor](kafka-ride-sharing-project/3B.png)
 
 ---
 
-## Driver Earnings Consumer
+# Driver Earnings Consumer
 
-Calculates:
+Consumes completed rides and calculates:
 
-- Completed Rides
-- Driver Earnings
+- Total Completed Rides
+- Total Driver Earnings
 
 Formula:
 
@@ -233,44 +303,69 @@ Formula:
 1 Completed Ride = $5
 ```
 
-### Screenshot
+## Driver Earnings Output
 
-![Driver Earnings](kafka-ride-sharing-project/screenshots/3C.png)
+![Driver Earnings](kafka-ride-sharing-project/3C.png)
 
 ---
 
-## Top Drivers Report
+# Top Drivers Report
 
-Example:
+Example Output:
 
 ```text
-1. D101 | Rides: 4 | Earnings: $20
-2. D102 | Rides: 2 | Earnings: $10
-3. D104 | Rides: 2 | Earnings: $10
-4. D103 | Rides: 1 | Earnings: $5
-5. D105 | Rides: 1 | Earnings: $5
+1. D101 | Completed Rides: 4 | Earnings: $20
+2. D102 | Completed Rides: 2 | Earnings: $10
+3. D104 | Completed Rides: 2 | Earnings: $10
+4. D103 | Completed Rides: 1 | Earnings: $5
+5. D105 | Completed Rides: 1 | Earnings: $5
+```
+
+---
+
+# Project Structure
+
+```text
+kafka-projects
+│
+├── kafka-ecommerce-project
+│   ├── producer.py
+│   ├── consumer.py
+│   ├── consumer_with_error_handling.py
+│   ├── orders.csv
+│   ├── docker-compose.yml
+│   └── screenshots
+│
+├── kafka-ride-sharing-project
+│   ├── ride_producer.py
+│   ├── completed_ride_processor.py
+│   ├── driver_earnings_consumer.py
+│   ├── top5_drivers.py
+│   ├── ride_events.csv
+│   └── screenshots
+│
+└── README.md
 ```
 
 ---
 
 # Learning Outcomes
 
-This assignment demonstrates:
+This project demonstrates:
 
-- Kafka Brokers
-- Kafka Topics
-- Kafka Partitions
-- Kafka Producers
-- Kafka Consumers
+- Kafka Broker Management
+- Topic Creation
+- Message Publishing
+- Message Consumption
 - Consumer Groups
 - Offset Management
 - Partition Rebalancing
 - Poison Message Handling
 - Dead Letter Topic Design
 - Event Filtering
-- Event-Driven Architecture
-- Real-Time Analytics
 - Stream Processing
+- Real-Time Analytics
+- Event-Driven Architecture
 
 ---
 
@@ -282,39 +377,52 @@ Kafka provides:
 
 - High Throughput
 - Reliability
-- Fault Tolerance
 - Scalability
+- Fault Tolerance
 
 ## Why Python?
 
 Python provides:
 
-- Fast Development
+- Rapid Development
 - Easy Kafka Integration
-- Readable Code
+- Simple Maintenance
 
 ## Why Separate Topics?
 
 Separate topics improve:
 
-- Maintainability
 - Scalability
+- Maintainability
 - Loose Coupling
 
 ## Why Dead Letter Topic?
 
-A Dead Letter Topic allows invalid messages to be stored separately for future investigation without crashing consumers.
+A Dead Letter Topic allows failed messages to be stored separately without affecting normal processing.
 
 ---
 
 # Conclusion
 
-This project successfully demonstrates Apache Kafka fundamentals and event-driven application development through:
+This repository successfully demonstrates Apache Kafka fundamentals and event-driven application development using Python.
+
+Projects Included:
 
 1. E-Commerce Event Processing System
 2. Ride Sharing Event Analytics Pipeline
 
-The implementation covers producer-consumer communication, consumer groups, partition rebalancing, poison message handling, event filtering, and real-time analytics using Apache Kafka and Python.
-=======
-# kafka-projects
->>>>>>> a3e8d65ab3dd29811db8e990ea9b9bda55e46884
+The implementation covers:
+
+- Kafka Producers
+- Kafka Consumers
+- Consumer Groups
+- Partition Rebalancing
+- Poison Message Handling
+- Event Filtering
+- Real-Time Driver Analytics
+
+---
+
+## License
+
+This project is for educational and learning purposes.
