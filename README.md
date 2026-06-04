@@ -82,15 +82,15 @@ Analytics
 
 ## Topic Description
 
-![Topic Description](kafka-ecommerce-project/1.3-A.png)
+![Topic Description](kafka-ecommerce-project/1.3_A.png)
 
 ## Producing Messages with Keys
 
-![Producing Messages](kafka-ecommerce-project/1.3-B.png)
+![Producing Messages](kafka-ecommerce-project/1.3_B.png)
 
 ## Consuming Messages from Partition 0
 
-![Partition Consumption](kafka-ecommerce-project/1.3-C.png)
+![Partition Consumption](kafka-ecommerce-project/1.3_C.png)
 
 ---
 
@@ -100,11 +100,11 @@ Producer reads records from CSV and publishes them to Kafka.
 
 ## Producer Execution
 
-![Producer Execution](kafka-ecommerce-project/2.1.png)
+![Producer Execution](kafka-ecommerce-project/2.1_.png)
 
 ## Published Records
 
-![Published Records](kafka-ecommerce-project/2.1-1.png)
+![Published Records](kafka-ecommerce-project/2.1_1.png)
 
 ---
 
@@ -114,11 +114,11 @@ Consumer reads messages and maintains a running order count.
 
 ## Consumer Output
 
-![Consumer Output](kafka-ecommerce-project/2.2-A.png)
+![Consumer Output](kafka-ecommerce-project/2.2_A.png)
 
 ## Running Count
 
-![Running Count](kafka-ecommerce-project/2.2-B.png)
+![Running Count](kafka-ecommerce-project/2.2_B.png)
 
 ---
 
@@ -128,11 +128,11 @@ Two consumer instances were started in the same group.
 
 ## Consumer Instance 1
 
-![Consumer Rebalance 1](kafka-ecommerce-project/2.3-A.png)
+![Consumer Rebalance 1](kafka-ecommerce-project/2.3_A.png)
 
 ## Consumer Instance 2
 
-![Consumer Rebalance 2](kafka-ecommerce-project/2.3-B.png)
+![Consumer Rebalance 2](kafka-ecommerce-project/2.3_B.png)
 
 ---
 
@@ -142,11 +142,11 @@ Invalid JSON was intentionally sent to Kafka.
 
 ## Poison Message Published
 
-![Poison Message Published](kafka-ecommerce-project/2.4-A.png)
+![Poison Message Published](kafka-ecommerce-project/2.4_A.png)
 
 ## Consumer Error Handling
 
-![Poison Message Handling](kafka-ecommerce-project/2.4-B.png)
+![Poison Message Handling](kafka-ecommerce-project/2.4B.png)
 
 ## Dead Letter Topic Design
 
