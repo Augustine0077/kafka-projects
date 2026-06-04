@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Apache Kafka Projects
 
 ## Author
@@ -314,3 +315,6 @@ This project successfully demonstrates Apache Kafka fundamentals and event-drive
 2. Ride Sharing Event Analytics Pipeline
 
 The implementation covers producer-consumer communication, consumer groups, partition rebalancing, poison message handling, event filtering, and real-time analytics using Apache Kafka and Python.
+=======
+# kafka-projects
+>>>>>>> a3e8d65ab3dd29811db8e990ea9b9bda55e46884
